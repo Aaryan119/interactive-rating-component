@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Interactive rating component</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root{
+      --White: hsl(0, 0%, 100%);
+      --Light-Grey: hsl(217, 12%, 63%);
+      --Medium-Grey: hsl(216, 12%, 54%);
+      --Dark-Blue: hsl(213, 19%, 18%);
+      --Very-Dark-Blue: hsl(216, 12%, 8%);
+    }
+
+    body{
+      min-height: 100vh;
+      display: grid;
+      place-content: center;
+      background-color:#121417;
+      line-height: 1.5;
+
+    }
+    .container{
+      max-width:400px;
+      padding:1.5rem;
+      margin: 1rem;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+
+
+    }
+    .first{
+      background-color: #252d37;
+      padding:1.5rem 2.2rem;
+      border-radius: 1rem;
+    }
+    .inside-container{
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+      gap:1.6rem;
+
+    }
+    .inside-container .star{
+      height:2rem;
+      width:2rem;
+      background-color:  #3a4655;
+      border-radius: 50%;
+      position: relative;
+
+    }
+    .inside-container .star img{
+      position: absolute;
+      top:25%;
+      left:25%;
+
+    }
+    .inside-container .icons{
+      display: flex;
+      width:100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .icons .box{
+      height: 2rem;
+      width: 2rem;
+      border-radius: 50%;
+      background-color:  #3a4655;
+      position: relative;
+      cursor: pointer;
+
+
+    }
+    .icons button{
+      border: none;
+      background-color: transparent;
+      color:var(--Light-Grey);
+      position: absolute;
+      top:30%;
+      left:35%;
+    }
+    .sbt-box {
+      width: 100%;
+      text-align: center;
+      border-radius: 1rem;
+      background-color: orangered;
+    }
+    .sbt-box .subt{
+      background-color: transparent;
+      border:none;
+      font-size: 1rem;
+      font-weight:500;
+      text-transform: uppercase;
+      color:var(--White);
+      padding:0.4rem 0;
+    }
+    .inside-container h2{
+      color:var(--White);
+    }
+
+    .inside-container p{
+      color:var(--Light-Grey);
+    }
+
+    .second{
+      background-color: #252d37;
+      padding:1.5rem 2.2rem;
+      border-radius: 1rem;
+    }
+
+    .container-2{
+      align-items: center;
+      text-align: center;
+    }
+    .second{
+      display: none;
+    }
+
+
+    
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="first">
+      <div class="inside-container container-1">
+        <div class="star">
+          <img src="./images/icon-star.svg" alt="icon">
+        </div>
+        <h2>How did we do?</h2>
+
+        <p>Please let us know how we did with your support request. All feedback is appreciated 
+        to help us improve our offering!</p>
+
+        <div class="icons">
+          <div class="box">
+            <button class="one">1</button>
+          </div>
+          <div class="box">
+            <button class="two">2</button>
+          </div>
+          <div class="box">
+            <button class="three">3</button>
+          </div>
+          <div class="box">
+            <button class="four">4</button>
+          </div>
+          <div class="box">
+            <button class="five">5</button>
+          </div>
+        </div>
+        <div class="sbt-box">
+          <button class="subt">Submit</button>
+        </div>
+      </div>
+    </div>
+    <div class="second">
+      <div class="inside-container container-2">
+        <img src="./images/illustration-thank-you.svg" alt="icon">
+        <div class="pill">
+          <p>You selected <span class="value"></span>out of 5</p>
+        </div> 
+
+        <h2>Thank you!</h2>
+
+        <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+          don’t hesitate to get in touch!</p>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  const button=document.querySelector('.sbt-box');
+  const first=document.querySelector('.first');
+  const value=document.querySelector('.value');
+  const second=document.querySelector('.second');
+  const box=document.querySelectorAll('.box');
+  box.forEach((element)=>{
+    element.addEventListener('click',function(){
+      let classN=element.childNodes;
+      let classes=classN[1].className;
+      button.addEventListener('click',function(f){
+        f.preventDefault();
+        if(classes=='one'){
+          value.innerHTML='1 ';
+
+        }
+        else if(classes=='two'){
+          value.innerHTML='2 ';
+        }
+        else if(classes=='three'){
+          value.innerHTML="3 ";
+        }
+        else if(classes=='four'){
+          value.innerHTML="4 ";
+        }
+        else if(classes=='five'){
+          value.innerHTML="5 ";
+        }
+
+        first.style.display="none";
+        second.style.display="block";
+
+
+
+      })
+    })
+  })
+</script>
+</html>
